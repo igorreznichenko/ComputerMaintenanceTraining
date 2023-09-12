@@ -47,4 +47,4 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _player: {fileID: 0}
   _distance: 0.5
-  _yOffset: -0.05
+  _yOffset: -0.15
