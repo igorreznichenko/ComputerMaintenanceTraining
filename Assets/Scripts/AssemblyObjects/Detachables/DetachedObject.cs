@@ -1,6 +1,5 @@
 using ComputerMaintenanceTraining.Enums;
 using Oculus.Interaction;
-using Oculus.Interaction.HandGrab;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		private DetachedObjectPlace _current = null;
 
 		[SerializeField]
-		private HandGrabInteractable _handGrabInteractable;
+		private PointableUnityEventWrapper _pointableUnityEventWrapper;
 
 		private List<DetachedObjectPlace> _candidates = new List<DetachedObjectPlace>();
 
@@ -31,12 +30,14 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		private void SubscribeEvents()
 		{
-			_handGrabInteractable.WhenStateChanged += OnHandGrabInteractableStateChanged;
+			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
+			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnDeselectEventHandler);
 		}
 
 		private void UnsubscribeEvents()
 		{
-			_handGrabInteractable.WhenStateChanged -= OnHandGrabInteractableStateChanged;
+			_pointableUnityEventWrapper.WhenSelect.RemoveListener(OnSelectEventHandler);
+			_pointableUnityEventWrapper.WhenUnselect.RemoveListener(OnDeselectEventHandler);
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -67,26 +68,23 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			}
 		}
 
-		private void OnHandGrabInteractableStateChanged(InteractableStateChangeArgs args)
+		private void OnDeselectEventHandler(PointerEvent pointerEvent)
 		{
-
-			if (args.NewState == InteractableState.Select && args.PreviousState != InteractableState.Select)
+			if (_detachedObjectState == DetachedObjectState.Hover)
 			{
-				if (_detachedObjectState == DetachedObjectState.Attached)
-				{
-					_detachedObjectState = DetachedObjectState.Hover;
-					_current.Release();
-					_current = null;
-				}
+				_current = _candidates.First();
+				_current.SetDetachedObject(this);
+				_detachedObjectState = DetachedObjectState.Attached;
 			}
-			else if (args.NewState != InteractableState.Select && args.NewState == InteractableState.Select)
+		}
+
+		private void OnSelectEventHandler(PointerEvent pointerEvent)
+		{
+			if (_detachedObjectState == DetachedObjectState.Attached)
 			{
-				if (_detachedObjectState == DetachedObjectState.Hover)
-				{
-					_current = _candidates.First();
-					_current.SetDetachedObject(this);
-					_detachedObjectState = DetachedObjectState.Attached;
-				}
+				_detachedObjectState = DetachedObjectState.Hover;
+				_current.Release();
+				_current = null;
 			}
 		}
 	}

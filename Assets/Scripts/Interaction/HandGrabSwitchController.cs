@@ -4,18 +4,27 @@ using UnityEngine;
 namespace ComputerMaintenanceTraining.Interaction
 {
 	public class HandGrabSwitchController : MonoBehaviour
-    {
-        [SerializeField]
-        private HandGrabInteractable _handGrabInteractable;
+	{
+		[SerializeField]
+		private HandGrabInteractable _leftHandGrabInteractable;
 
-        public void ActivateGrab()
-        {
-            _handGrabInteractable.enabled = true;
-        }   
-        
-        public void DeactivateGrab()
-        {
-            _handGrabInteractable.enabled = false;
-        }
-    }
+		[SerializeField]
+		private HandGrabInteractable _rightHandGrabInteractable;
+
+		public void ActivateGrab()
+		{
+			SetActiveGrab(true);
+		}
+
+		public void DeactivateGrab()
+		{
+			SetActiveGrab(false);
+		}
+
+		private void SetActiveGrab(bool isActive)
+		{
+			_leftHandGrabInteractable.enabled = isActive;
+			_rightHandGrabInteractable.enabled = isActive;
+		}
+	}
 }
