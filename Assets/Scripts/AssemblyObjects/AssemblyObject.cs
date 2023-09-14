@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class AssemblyObject : MonoBehaviour
+	public class AssemblyObject : MonoBehaviour, IAssemblyObject
 	{
 		[SerializeField]
 		private AssemblyObjectType _assemblyObjectType;
