@@ -29,7 +29,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			get { return _canBePlacedToPlaceholder; }
 			set
 			{
-				if(_canBePlacedToPlaceholder != value )
+				if (_canBePlacedToPlaceholder != value)
 				{
 					_canBePlacedToPlaceholder = value;
 					OnPlacableStateChanged?.Invoke(this);
@@ -49,6 +49,15 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		private void OnDisable()
 		{
 			UnsubscribeEvents();
+		}
+
+		private void Start()
+		{
+			if (_current != null)
+			{
+				_current.SetDetachedObject(this);
+				_detachedObjectState = DetachedObjectState.Attached;
+			}
 		}
 
 		private void SubscribeEvents()
