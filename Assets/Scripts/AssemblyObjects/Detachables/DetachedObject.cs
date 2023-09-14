@@ -38,6 +38,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		}
 
 		public event Action<IPlaceholderObject> OnPlacableStateChanged;
+		public event Action<PlaceholderPlace> OnPlaceholderPlaceChanged;
 
 		#endregion
 
@@ -126,6 +127,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 				_current.Release();
 				_current = null;
 			}
+		}
+
+		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
+		{
+			OnPlaceholderPlaceChanged?.Invoke(placeholderPlace);
 		}
 	}
 }

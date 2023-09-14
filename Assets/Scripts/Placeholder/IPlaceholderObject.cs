@@ -17,5 +17,9 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 		}
 
 		public event Action<IPlaceholderObject> OnPlacableStateChanged;
+
+		public event Action<PlaceholderPlace> OnPlaceholderPlaceChanged;
+
+		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace);
 	}
 }
