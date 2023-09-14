@@ -12,7 +12,7 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 		[SerializeField]
 		private float _moveToPlaceTime = 1f;
 
-		private IPlaceholderObject _current = null;
+		private IPlaceholderObject _lastObject = null;
 
 		public AssemblyObjectType Target
 		{
@@ -21,7 +21,15 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 
 		public bool IsBusy
 		{
-			get { return _current != null; }
+			get
+			{
+				if (_lastObject != null)
+				{
+					return _lastObject.Pivot.position == transform.position && _lastObject.Pivot.rotation.eulerAngles == transform.rotation.eulerAngles;
+				}
+
+				return false;
+			}
 		}
 
 		public void SetObject(IPlaceholderObject assemblyObject)
@@ -31,10 +39,10 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 				throw new System.Exception("Invalid object for place");
 			}
 
-			_current = assemblyObject;
+			_lastObject = assemblyObject;
 
-			_current.Pivot.DOMove(transform.position, _moveToPlaceTime);
-			_current.Pivot.DORotate(transform.rotation.eulerAngles, _moveToPlaceTime);
+			_lastObject.Pivot.DOMove(transform.position, _moveToPlaceTime);
+			_lastObject.Pivot.DORotate(transform.rotation.eulerAngles, _moveToPlaceTime);
 		}
 	}
 }

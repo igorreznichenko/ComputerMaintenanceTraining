@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9054e0a6f628bc849b73bf00b962ed4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _assemblyObjectType: 0
+  _assemblyObjectType: 1
   _pivot: {fileID: 7132322928081739617}
   _current: {fileID: 0}
   _pointableUnityEventWrapper: {fileID: 7132322928081739616}
