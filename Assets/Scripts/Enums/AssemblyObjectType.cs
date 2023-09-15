@@ -4,6 +4,7 @@ namespace ComputerMaintenanceTraining.Enums
 	{
 		SideCoverHolder,
 		SideCover,
-		Baterry
+		Baterry,
+		RAM
 	}
 }
