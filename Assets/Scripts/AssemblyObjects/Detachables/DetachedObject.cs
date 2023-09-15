@@ -20,9 +20,25 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		private DetachedObjectState _detachedObjectState;
 
+		private DetachedObjectState DetachedObjectState
+		{
+			get { return _detachedObjectState; }
+			set
+			{
+				if(_detachedObjectState != value)
+				{
+					_detachedObjectState = value;
+					OnDetachedObjectStateChanged?.Invoke(value);
+				}
+			}
+		}
+
+		private event Action<DetachedObjectState> OnDetachedObjectStateChanged = default;
+
 		#region placeholder logic
 
 		private bool _canBePlacedToPlaceholder = false;
+
 
 		public bool CanBePlacedToPlaceholder
 		{
@@ -57,7 +73,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			if (_current != null)
 			{
 				_current.SetDetachedObject(this);
-				_detachedObjectState = DetachedObjectState.Attached;
+				DetachedObjectState = DetachedObjectState.Attached;
 			}
 		}
 
@@ -80,7 +96,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 				if (place.TargetObject == AssemblyObjectType)
 				{
 					_candidates.Add(place);
-					_detachedObjectState = DetachedObjectState.Hover;
+					DetachedObjectState = DetachedObjectState.Hover;
 				}
 			}
 		}
@@ -95,7 +111,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 					if (_candidates.Count == 0)
 					{
-						_detachedObjectState = DetachedObjectState.Detached;
+						DetachedObjectState = DetachedObjectState.Detached;
 					}
 				}
 			}
@@ -104,12 +120,12 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		private void OnDeselectEventHandler(PointerEvent pointerEvent)
 		{
 
-			if (_detachedObjectState == DetachedObjectState.Hover)
+			if (DetachedObjectState == DetachedObjectState.Hover)
 			{
 				_current = _candidates.First();
 
 				_current.SetDetachedObject(this);
-				_detachedObjectState = DetachedObjectState.Attached;
+				DetachedObjectState = DetachedObjectState.Attached;
 
 				return;
 			}
@@ -122,9 +138,9 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			CanBePlacedToPlaceholder = false;
 
-			if (_detachedObjectState == DetachedObjectState.Attached)
+			if (DetachedObjectState == DetachedObjectState.Attached)
 			{
-				_detachedObjectState = DetachedObjectState.Hover;
+				DetachedObjectState = DetachedObjectState.Hover;
 				_current.Release();
 				_current = null;
 			}

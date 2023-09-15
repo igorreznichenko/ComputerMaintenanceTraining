@@ -12,15 +12,18 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 		[SerializeField]
 		private float _moveToPlaceTime = 1f;
 
+		[SerializeField]
+		private GameObject _currentObject;
+
 		private IPlaceholderObject _current = null;
 
 		private IPlaceholderObject Current
 		{
 			set
 			{
-				if(_current != null)
+				if (_current != null)
 				{
-					if(value == null)
+					if (value == null)
 					{
 						_current.OnPlaceholderPlaceChangedEventHandler(null);
 					}
@@ -52,6 +55,15 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 			}
 		}
 
+		private void Start()
+		{
+			if (_currentObject != null &&
+				_currentObject.TryGetComponent(out IPlaceholderObject placeholderObject))
+			{
+				SetObject(placeholderObject);
+			}
+		}
+
 		public void SetObject(IPlaceholderObject assemblyObject)
 		{
 			if (IsBusy || _target != assemblyObject.AssemblyObjectType)
@@ -61,16 +73,19 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 
 			_moveToPlace?.Kill();
 
-			_isStartMoveToPlace = true;
-
-
 			Current = assemblyObject;
 
+			bool alreadyOnPosition = IsTransformOnPlace(assemblyObject.Pivot);
 
-			_moveToPlace.Join(_current.Pivot.DOMove(transform.position, _moveToPlaceTime));
-			_moveToPlace.Join(_current.Pivot.DORotate(transform.rotation.eulerAngles, _moveToPlaceTime));
+			if (!alreadyOnPosition)
+			{
+				_isStartMoveToPlace = true;
 
-			_moveToPlace.OnComplete(() => _isStartMoveToPlace = false);
+				_moveToPlace.Join(_current.Pivot.DOMove(transform.position, _moveToPlaceTime));
+				_moveToPlace.Join(_current.Pivot.DORotate(transform.rotation.eulerAngles, _moveToPlaceTime));
+
+				_moveToPlace.OnComplete(() => _isStartMoveToPlace = false);
+			}
 		}
 
 		private void Update()
@@ -84,12 +99,17 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 				return;
 
 
-			bool isInRightPosition = _current.Pivot.position == transform.position && _current.Pivot.rotation.eulerAngles == transform.rotation.eulerAngles;
+			bool isInRightPosition = IsTransformOnPlace(_current.Pivot);
 
 			if (!isInRightPosition)
 			{
 				Current = null;
 			}
+		}
+
+		private bool IsTransformOnPlace(Transform checkedTransform)
+		{
+			return checkedTransform.position == transform.position && checkedTransform.rotation.eulerAngles == transform.rotation.eulerAngles;
 		}
 	}
 }

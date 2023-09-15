@@ -1,4 +1,5 @@
 using ComputerMaintenanceTraining.Enums;
+using System;
 using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
@@ -18,13 +19,29 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		private DetachedObject _current = null;
 
+		private DetachedObject Current
+		{
+			get { return _current; }
+			set
+			{
+				if (_current != value)
+				{
+					_current = value;
+
+					OnDetachedObjectChanged?.Invoke(value);
+				}
+			}
+		}
+
+		public event Action<DetachedObject> OnDetachedObjectChanged = default;
+
 		public void SetDetachedObject(DetachedObject detachedObject)
 		{
-			_current = detachedObject;
+			Current = detachedObject;
 
 			detachedObject.Pivot.SetPositionAndRotation(_pivot.position, _pivot.rotation);
 
-			if(detachedObject.Pivot.parent != transform)
+			if (detachedObject.Pivot.parent != transform)
 			{
 				detachedObject.Pivot.parent = transform;
 			}
@@ -32,7 +49,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		public void Release()
 		{
-			_current = null;
+			Current = null;
 		}
 	}
 }
