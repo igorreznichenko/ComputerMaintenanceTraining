@@ -157,6 +157,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BatteryHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 3436507495900845607, guid: 3b2ebfbb0ad48b448b0112f18117fffc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538694607340544247, guid: 3b2ebfbb0ad48b448b0112f18117fffc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7407650003525738168, guid: 3b2ebfbb0ad48b448b0112f18117fffc,
         type: 3}
       propertyPath: m_RootOrder

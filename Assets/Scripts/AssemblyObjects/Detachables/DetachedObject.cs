@@ -107,6 +107,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			if (_detachedObjectState == DetachedObjectState.Hover)
 			{
 				_current = _candidates.First();
+
 				_current.SetDetachedObject(this);
 				_detachedObjectState = DetachedObjectState.Attached;
 

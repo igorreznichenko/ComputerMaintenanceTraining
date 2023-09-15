@@ -23,6 +23,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			_current = detachedObject;
 
 			detachedObject.Pivot.SetPositionAndRotation(_pivot.position, _pivot.rotation);
+
+			if(detachedObject.Pivot.parent != transform)
+			{
+				detachedObject.Pivot.parent = transform;
+			}
 		}
 
 		public void Release()
