@@ -892,6 +892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OldRAM
       objectReference: {fileID: 0}
+    - target: {fileID: 7137511024493103851, guid: bd117431f719cdd4d99fad2f9bfb097e,
+        type: 3}
+      propertyPath: _current
+      value: 
+      objectReference: {fileID: 8711477888355378661}
     - target: {fileID: 7137511024493103855, guid: bd117431f719cdd4d99fad2f9bfb097e,
         type: 3}
       propertyPath: m_RootOrder
@@ -1104,6 +1109,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c34b4d26d391f4186f8282939bf9f1, type: 3}
+--- !u!114 &8711477888355378661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5334489920845047701, guid: 00c34b4d26d391f4186f8282939bf9f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3666643311328313968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7c0c2acf4c0ee4a89d8b712b39302f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8711477888355378663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5334489920845047703, guid: 00c34b4d26d391f4186f8282939bf9f1,
