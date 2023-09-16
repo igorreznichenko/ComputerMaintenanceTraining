@@ -21,14 +21,14 @@ namespace ComputerMaintenanceTraining.TaskProgress.Conditions
 
 		private void UnsubscribeEvents()
 		{
-			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
-			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnUnselectEventHandler);
+			_pointableUnityEventWrapper.WhenSelect.RemoveListener(OnSelectEventHandler);
+			_pointableUnityEventWrapper.WhenUnselect.RemoveListener(OnUnselectEventHandler);
 		}
 
 		private void SubscribeEvents()
 		{
-			_pointableUnityEventWrapper.WhenSelect.RemoveListener(OnSelectEventHandler);
-			_pointableUnityEventWrapper.WhenUnselect.RemoveListener(OnUnselectEventHandler);
+			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
+			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnUnselectEventHandler);
 		}
 
 		private void OnSelectEventHandler(PointerEvent args)
