@@ -1,11 +1,12 @@
+using ComputerMaintenanceTraining.Enums;
+using ComputerMaintenanceTraining.Extensions;
 using Oculus.Interaction;
 using System;
 using UnityEngine;
-using ComputerMaintenanceTraining.Extensions;
 
 namespace ComputerMaintenanceTraining.MotherboardComponents
 {
-	public class BatteryKeeper : MonoBehaviour
+	public class BatteryPlace : MonoBehaviour
 	{
 		[SerializeField]
 		private Transform _pivot;
@@ -13,10 +14,10 @@ namespace ComputerMaintenanceTraining.MotherboardComponents
 		[SerializeField]
 		private PointableUnityEventWrapper _batteryKeeperUnityEventWrapper;
 
-		private float _openDegree = 20;
+		private float _openDegree = -15;
 
-		public event Action OnBatteryHolderOpenned;
-		public event Action OnBatteryHolderClosed;
+		public event Action OnBatteryOutFromPlace;
+		public event Action OnBatteryInPlace;
 
 		private void OnEnable()
 		{
@@ -40,19 +41,19 @@ namespace ComputerMaintenanceTraining.MotherboardComponents
 
 		private void OnSelectEventHandler(PointerEvent arg)
 		{
-			Open();
+			BatteryInPlace();
 		}
 
-		public void Open()
+		public void BatteryOutPlace()
 		{
-			_pivot.SetLocalZRotation(_openDegree);
-			OnBatteryHolderOpenned?.Invoke();
+			_pivot.SetLocalRotationForAxis(_openDegree, Axis.Z);
+			OnBatteryOutFromPlace?.Invoke();
 		}
 
-		public void Close()
+		public void BatteryInPlace()
 		{
-			_pivot.SetLocalZRotation(0);
-			OnBatteryHolderClosed?.Invoke();
+			_pivot.SetLocalRotationForAxis(0, Axis.Z);
+			OnBatteryInPlace?.Invoke();
 		}
 	}
 }
