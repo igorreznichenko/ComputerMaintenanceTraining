@@ -1450,12 +1450,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: RAMSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 7392273537950066157, guid: ac80b99a45aef7f4bbc500f67e049875,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8448399489063817882, guid: ac80b99a45aef7f4bbc500f67e049875,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8745165509724962835, guid: ac80b99a45aef7f4bbc500f67e049875,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150001076469848789, guid: ac80b99a45aef7f4bbc500f67e049875,
         type: 3}
       propertyPath: m_Enabled
       value: 0
