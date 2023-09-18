@@ -1,3 +1,4 @@
+using ComputerMaintenanceTraining.AssemblyObjects;
 using ComputerMaintenanceTraining.Enums;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ namespace ComputerMaintenanceTraining.Extensions
 			transform.localEulerAngles = localRotation;
 		}
 
-
+		public static Quaternion TransformWorldToLocalRotation(this Transform transform, Transform target)
+		{
+			return Quaternion.Inverse(transform.rotation) * target.rotation;
+		}
 	}
 }

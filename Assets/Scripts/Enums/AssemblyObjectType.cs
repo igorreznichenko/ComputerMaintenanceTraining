@@ -6,6 +6,8 @@ namespace ComputerMaintenanceTraining.Enums
 		SideCover,
 		Baterry,
 		RAM,
-		CPUCooler
+		CPUCooler,
+		Screwdriver,
+		Screw
 	}
 }
