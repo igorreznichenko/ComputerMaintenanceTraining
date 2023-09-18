@@ -5,6 +5,7 @@ namespace ComputerMaintenanceTraining.Enums
 		SideCoverHolder,
 		SideCover,
 		Baterry,
-		RAM
+		RAM,
+		CPUCooler
 	}
 }
