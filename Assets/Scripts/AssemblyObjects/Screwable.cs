@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public abstract class Screwable : AssemblyObject
+	public class Screwable : AssemblyObject
 	{
 		[SerializeField]
 		private Transform _screwIn;
