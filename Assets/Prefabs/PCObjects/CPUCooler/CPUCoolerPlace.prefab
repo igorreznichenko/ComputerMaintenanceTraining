@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2261618112742435934}
   - component: {fileID: 2261618112742435933}
+  - component: {fileID: 2673950471084592257}
   m_Layer: 0
   m_Name: CPUCoolerPlace
   m_TagString: Untagged
@@ -78,6 +79,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07233639, y: 0.13743699, z: 0.11044752}
   m_Center: {x: 0.006224312, y: 0.029165968, z: -0.0000000037252903}
+--- !u!114 &2673950471084592257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261618112742435932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7c0c2acf4c0ee4a89d8b712b39302f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetObject: 4
+  _pivot: {fileID: 2261618112742435934}
 --- !u!1001 &4196531066656218848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 3931855043502101984, guid: 35731100bd84eb541a8c8e648c5e7666,
         type: 3}
       propertyPath: m_Name
-      value: CoolerCombined Variant
+      value: CoolerCombined
       objectReference: {fileID: 0}
     - target: {fileID: 4457176013380849498, guid: 35731100bd84eb541a8c8e648c5e7666,
         type: 3}
