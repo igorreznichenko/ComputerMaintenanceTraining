@@ -32,6 +32,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			get { return _pivot; }
 		}
 
+		public Transform PlacePivot
+		{
+			get { return _currentPlace.Pivot; }
+		}
+
 		public Transform ScrewToolPlace
 		{
 			get
@@ -61,7 +66,9 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			bool isScrewedOutBefore = IsScrewedOut;
 
 			_pivot.SetLocalRotationForAxis(_pivot.localRotation.y + screwValue, Enums.Axis.Y);
-			_pivot.position += _pivot.up * screwValue;
+			_pivot.position += _pivot.up * screwValue * _screwSpeed * Time.deltaTime;
+
+			print(Pivot.position);
 
 			if (IsScrewedIn && !isScrewedInBefore)
 			{

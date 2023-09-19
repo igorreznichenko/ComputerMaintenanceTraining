@@ -1,16 +1,16 @@
+using ComputerMaintenanceTraining.Collisions;
 using ComputerMaintenanceTraining.Extensions;
 using ComputerMaintenanceTraining.PlaceholderLogic;
+using ComputerMaintenanceTraining.Utils;
 using DG.Tweening;
 using Oculus.Interaction;
-using Oculus.Interaction.HandGrab;
 using System;
 using System.Collections;
 using UnityEngine;
-using Tween = DG.Tweening.Tween;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class Screwdriver : AssemblyObject, IPlaceholderObject
+	public class Screwdriver : AssemblyObject, IPlaceholderObject, ITriggerable
 	{
 		[SerializeField]
 		private Transform _modelPivot;
@@ -100,7 +100,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			OnPlaceholderPlaceChanged?.Invoke(placeholderPlace);
 		}
 
-		private void OnTriggerEnter(Collider other)
+		public void TriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out Screwable screwable))
 			{
@@ -112,6 +112,8 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 				StartScrewing(screwable);
 			}
 		}
+
+		public void TriggerExit(Collider other) { }
 
 		private void StartScrewing(Screwable screwable)
 		{
@@ -150,7 +152,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			_moveToPlaceSequence.Append(_modelPivot.DOMove(targetMovePosition, _moveToPlaceTime));
 			_moveToPlaceSequence.Join(_modelPivot.DORotate(targetRotation, _moveToPlaceTime));
 
-			yield return new WaitUntil(() => _moveToPlaceSequence.IsComplete());
+			bool isOnPlace = false;
+
+			_moveToPlaceSequence.OnComplete(() => isOnPlace = true);
+
+			yield return new WaitUntil(() => isOnPlace);
 
 			lastYRotation = screwable.Pivot.TransformWorldToLocalRotation(_modelPivot).eulerAngles.y;
 
@@ -170,18 +176,20 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 				_modelPivot.LookAt(pivotPosition, _modelPivot.up);
 
-				float currentAngle = screwable.Pivot.TransformWorldToLocalRotation(_modelPivot).eulerAngles.y;
+				float currentAngle = screwable.PlacePivot.TransformWorldToLocalRotation(_modelPivot).eulerAngles.y;
 
-				float difference = currentAngle - lastYRotation;
+				float difference =  CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
 
-				//handle difference
+				lastYRotation = currentAngle;
+
+
+				////handle difference
 
 				screwable.HandleScrew(difference);
 
 				Vector3 afterMovePosition = screwable.ScrewToolPlace.position + screwable.ScrewToolPlace.up * offsetDistance;
-				Quaternion afterMoveRotation = screwable.ScrewToolPlace.rotation;
 
-				_modelPivot.SetPositionAndRotation(afterMovePosition, afterMoveRotation);
+				_modelPivot.position = afterMovePosition;
 			}
 		}
 

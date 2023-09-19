@@ -10,8 +10,6 @@ namespace ComputerMaintenanceTraining.Extensions
 		{
 			Vector3 localRotation = transform.localEulerAngles;
 
-			localRotation.z = rotation;
-
 			switch (axis)
 			{
 				case Axis.None:
