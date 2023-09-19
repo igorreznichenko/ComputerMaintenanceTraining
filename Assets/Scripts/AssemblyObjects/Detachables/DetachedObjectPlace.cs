@@ -10,7 +10,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		private AssemblyObjectType _targetObject;
 
 		[SerializeField]
-		private Transform _pivot;
+		protected Transform _pivot;
 
 		public AssemblyObjectType TargetObject
 		{
@@ -19,7 +19,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		private DetachedObject _current = null;
 
-		private DetachedObject Current
+		protected DetachedObject Current
 		{
 			get { return _current; }
 			set
@@ -35,7 +35,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		public event Action<DetachedObject> OnDetachedObjectChanged = default;
 
-		public void SetDetachedObject(DetachedObject detachedObject)
+		public virtual void SetDetachedObject(DetachedObject detachedObject)
 		{
 			Current = detachedObject;
 
@@ -47,7 +47,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			}
 		}
 
-		public void Release()
+		public virtual void Release()
 		{
 			Current = null;
 		}

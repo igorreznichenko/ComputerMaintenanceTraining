@@ -25,7 +25,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			get { return _detachedObjectState; }
 			set
 			{
-				if(_detachedObjectState != value)
+				if (_detachedObjectState != value)
 				{
 					_detachedObjectState = value;
 					OnDetachedObjectStateChanged?.Invoke(value);
@@ -68,12 +68,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			UnsubscribeEvents();
 		}
 
-		private void Start()
+		protected virtual void Start()
 		{
 			if (_current != null)
 			{
-				_current.SetDetachedObject(this);
-				DetachedObjectState = DetachedObjectState.Attached;
+				SetToDetachedPlace(_current);
 			}
 		}
 
@@ -122,11 +121,8 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 			if (DetachedObjectState == DetachedObjectState.Hover)
 			{
-				_current = _candidates.First();
-
-				_current.SetDetachedObject(this);
-				DetachedObjectState = DetachedObjectState.Attached;
-
+				DetachedObjectPlace firstCandidate = _candidates.First();
+				SetToDetachedPlace(firstCandidate);
 				return;
 			}
 
@@ -141,14 +137,26 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			if (DetachedObjectState == DetachedObjectState.Attached)
 			{
 				DetachedObjectState = DetachedObjectState.Hover;
-				_current.Release();
-				_current = null;
+				ReleaseCurrentPlace();
 			}
 		}
 
 		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
 		{
 			OnPlaceholderPlaceChanged?.Invoke(placeholderPlace);
+		}
+
+		protected virtual void SetToDetachedPlace(DetachedObjectPlace detachedObjectPlace)
+		{
+			_current = detachedObjectPlace;
+			_current.SetDetachedObject(this);
+			DetachedObjectState = DetachedObjectState.Attached;
+		}
+
+		protected virtual void ReleaseCurrentPlace()
+		{
+			_current.Release();
+			_current = null;
 		}
 	}
 }

@@ -33,8 +33,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private Screwable _current = null;
 
-		private HandGrabInteractor _currentInteractor = null;
-
 		private Coroutine _screwingCoroutine = null;
 
 		private Sequence _moveToPlaceSequence = null;
@@ -87,15 +85,14 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private void OnSelectEventHandler(PointerEvent pointerEvent)
 		{
-			_canBePlacedToPlaceholder = true;
+			CanBePlacedToPlaceholder = false;
 		}
 
 		private void OnUnselectEventHandler(PointerEvent pointerEvent)
 		{
 			StopScrewing();
 
-			_currentInteractor = null;
-			_canBePlacedToPlaceholder = false;
+			CanBePlacedToPlaceholder = true;
 		}
 
 		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
@@ -127,7 +124,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private void StopScrewing()
 		{
-			if(_current != null)
+			if (_current != null)
 			{
 				_moveToPlaceSequence?.Kill();
 				this.KillCoroutine(ref _screwingCoroutine);
@@ -143,7 +140,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 			//Set model to bolt place
 			float offsetDistance = Vector3.Distance(_modelPivot.position, _screwHeader.position);
-			
+
 			Vector3 targetMovePosition = screwable.ScrewToolPlace.position + screwable.ScrewToolPlace.up * offsetDistance;
 			Vector3 targetRotation = screwable.ScrewToolPlace.rotation.eulerAngles;
 
