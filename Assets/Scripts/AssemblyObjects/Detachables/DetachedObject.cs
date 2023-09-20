@@ -92,7 +92,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (other.TryGetComponent(out DetachedObjectPlace place))
 			{
-				if (place.TargetObject == AssemblyObjectType)
+				if (place.TargetObject == AssemblyObjectType && place.CanAttachObject)
 				{
 					_candidates.Add(place);
 					DetachedObjectState = DetachedObjectState.Hover;
@@ -104,7 +104,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (other.TryGetComponent(out DetachedObjectPlace place))
 			{
-				if (place.TargetObject == AssemblyObjectType)
+				if (place.TargetObject == AssemblyObjectType && place.CanAttachObject)
 				{
 					_candidates.Remove(place);
 

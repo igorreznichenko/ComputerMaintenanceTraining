@@ -12,6 +12,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		[SerializeField]
 		protected Transform _pivot;
 
+		public bool CanAttachObject
+		{
+			get { return Current != null; }
+		}
+
 		public AssemblyObjectType TargetObject
 		{
 			get { return _targetObject; }
