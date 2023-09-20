@@ -31,9 +31,34 @@ namespace ComputerMaintenanceTraining.Extensions
 			transform.localEulerAngles = localRotation;
 		}
 
-		public static Quaternion TransformWorldToLocalRotation(this Transform transform, Transform target)
+		public static void SetLocalPositionForAxis(this Transform transform, float position, Axis axis)
 		{
-			return Quaternion.Inverse(transform.rotation) * target.rotation;
+			Vector3 localPosition = transform.localPosition;
+
+			switch (axis)
+			{
+				case Axis.None:
+					return;
+
+				case Axis.X:
+					localPosition.x = position;
+					break;
+
+				case Axis.Y:
+					localPosition.y = position;
+					break;
+
+				case Axis.Z:
+					localPosition.z = position;
+					break;
+			}
+
+			transform.localPosition = localPosition;
+		}
+
+		public static Quaternion TransformWorldToLocalRotation(this Transform transform, Quaternion worldRotation)
+		{
+			return Quaternion.Inverse(transform.rotation) * worldRotation;
 		}
 	}
 }

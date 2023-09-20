@@ -92,6 +92,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (other.TryGetComponent(out DetachedObjectPlace place))
 			{
+				if(_current != null)
+				{
+					return;
+				}
+
 				if (place.TargetObject == AssemblyObjectType && place.CanAttachObject)
 				{
 					_candidates.Add(place);

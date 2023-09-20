@@ -79,12 +79,15 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 
 			if (!alreadyOnPosition)
 			{
+				_moveToPlace = DOTween.Sequence();
 				_isStartMoveToPlace = true;
 
 				_moveToPlace.Join(_current.Pivot.DOMove(transform.position, _moveToPlaceTime));
 				_moveToPlace.Join(_current.Pivot.DORotate(transform.rotation.eulerAngles, _moveToPlaceTime));
 
-				_moveToPlace.OnComplete(() => _isStartMoveToPlace = false);
+				_moveToPlace.AppendCallback((() => 
+				_isStartMoveToPlace = false
+				));
 			}
 		}
 

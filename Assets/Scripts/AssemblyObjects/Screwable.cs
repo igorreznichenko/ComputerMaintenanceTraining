@@ -1,4 +1,5 @@
 using ComputerMaintenanceTraining.AssemblyObjects.Detachables;
+using ComputerMaintenanceTraining.Enums;
 using ComputerMaintenanceTraining.Extensions;
 using System;
 using UnityEngine;
@@ -16,11 +17,32 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 		[SerializeField]
 		private float _screwSpeed;
 
+		[SerializeField]
+		private bool _allowScrewable;
+
+		public bool AllowScrewable
+		{
+			get
+			{
+				return _allowScrewable;
+			}
+
+			set
+			{
+				_allowScrewable = value;
+			}
+		}
+
 		private ScrewableDetachedObjectPlace _currentPlace;
 
 		public event Action OnScrewedIn = default;
 		public event Action OnScrewedOut = default;
 		public event Action OnTransitedToScrew = default;
+
+		public bool IsScrewable
+		{
+			get { return _currentPlace != null && _allowScrewable; }
+		}
 
 		public float ScrewSpeed
 		{
@@ -65,35 +87,25 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			bool isScrewedInBefore = IsScrewedIn;
 			bool isScrewedOutBefore = IsScrewedOut;
 
-			_pivot.SetLocalRotationForAxis(_pivot.localRotation.y + screwValue, Enums.Axis.Y);
+			_pivot.SetLocalRotationForAxis(_pivot.localRotation.y + screwValue, Axis.Y);
 			_pivot.position += _pivot.up * screwValue * _screwSpeed * Time.deltaTime;
 
-			print(Pivot.position);
+			float yClamp = Mathf.Clamp(_pivot.localPosition.y, _currentPlace.ScrewIn.localPosition.y, _currentPlace.ScrewOut.localPosition.y);
+
+			_pivot.SetLocalPositionForAxis(yClamp, Axis.Y);
 
 			if (IsScrewedIn && !isScrewedInBefore)
 			{
-				SetInScrewedInPosition();
 				OnScrewedIn?.Invoke();
 			}
 			else if (IsScrewedOut && !isScrewedOutBefore)
 			{
-				SetInScrewedOutPosition();
 				OnScrewedOut?.Invoke();
 			}
 			else if (isScrewedInBefore || isScrewedOutBefore)
 			{
 				OnTransitedToScrew?.Invoke();
 			}
-		}
-
-		private void SetInScrewedInPosition()
-		{
-			_pivot.position = _currentPlace.ScrewIn.position;
-		}
-
-		private void SetInScrewedOutPosition()
-		{
-			_pivot.position = _currentPlace.ScrewOut.position;
 		}
 	}
 }

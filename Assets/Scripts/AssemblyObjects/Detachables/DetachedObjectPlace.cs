@@ -14,7 +14,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		public bool CanAttachObject
 		{
-			get { return Current != null; }
+			get { return Current == null; }
 		}
 
 		public AssemblyObjectType TargetObject

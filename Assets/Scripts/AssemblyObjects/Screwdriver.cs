@@ -104,7 +104,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 		{
 			if (other.TryGetComponent(out Screwable screwable))
 			{
-				if (_current != null)
+				if (_current != null || !screwable.IsScrewable)
 				{
 					return;
 				}
@@ -158,13 +158,20 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 			yield return new WaitUntil(() => isOnPlace);
 
-			lastYRotation = screwable.Pivot.TransformWorldToLocalRotation(_modelPivot).eulerAngles.y;
+			lastYRotation = screwable.Pivot.TransformWorldToLocalRotation(_modelPivot.rotation).eulerAngles.y;
 
 			//look at pivot in one plane
+
+			bool stuckInPlace = false;
 
 			while (true)
 			{
 				yield return null;
+
+				if(!screwable.IsScrewable)
+				{
+					break;
+				}
 
 				Vector3 pivotPosition = Pivot.position;
 
@@ -174,22 +181,48 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 				pivotPosition = _modelPivot.TransformPoint(pivotPosition);
 
-				_modelPivot.LookAt(pivotPosition, _modelPivot.up);
+				Vector3 lookRotationDirection = pivotPosition - _modelPivot.position;
 
-				float currentAngle = screwable.PlacePivot.TransformWorldToLocalRotation(_modelPivot).eulerAngles.y;
+				Quaternion lookRotation = Quaternion.LookRotation(lookRotationDirection, _modelPivot.up);
+
+				float currentAngle = screwable.PlacePivot.TransformWorldToLocalRotation(lookRotation).eulerAngles.y;
 
 				float difference =  CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
 
 				lastYRotation = currentAngle;
 
+				print("IsScrewedIn in screwdriver" + screwable.IsScrewedIn);
 
-				////handle difference
 
-				screwable.HandleScrew(difference);
+				if (difference < 0 && screwable.IsScrewedIn
+					|| difference > 0 && screwable.IsScrewedOut)
+				{
+					stuckInPlace = true;
 
-				Vector3 afterMovePosition = screwable.ScrewToolPlace.position + screwable.ScrewToolPlace.up * offsetDistance;
+					print("Stuck");
+				}
+				else if (stuckInPlace)
+				{
+					stuckInPlace = false;
 
-				_modelPivot.position = afterMovePosition;
+					currentAngle = lastYRotation;
+					print("Stop stuck");
+
+				}
+				else
+				{
+					////handle difference
+
+					print("Handle");
+
+					_modelPivot.rotation = lookRotation;
+
+					screwable.HandleScrew(difference);
+
+					Vector3 afterMovePosition = screwable.ScrewToolPlace.position + screwable.ScrewToolPlace.up * offsetDistance;
+
+					_modelPivot.position = afterMovePosition;
+				}
 			}
 		}
 
