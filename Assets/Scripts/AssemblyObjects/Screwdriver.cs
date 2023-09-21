@@ -191,30 +191,21 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 				lastYRotation = currentAngle;
 
-				print("IsScrewedIn in screwdriver" + screwable.IsScrewedIn);
-
-
 				if (difference < 0 && screwable.IsScrewedIn
 					|| difference > 0 && screwable.IsScrewedOut)
 				{
 					stuckInPlace = true;
 
-					print("Stuck");
 				}
 				else if (stuckInPlace)
 				{
 					stuckInPlace = false;
 
 					currentAngle = lastYRotation;
-					print("Stop stuck");
 
 				}
 				else
 				{
-					////handle difference
-
-					print("Handle");
-
 					_modelPivot.rotation = lookRotation;
 
 					screwable.HandleScrew(difference);
