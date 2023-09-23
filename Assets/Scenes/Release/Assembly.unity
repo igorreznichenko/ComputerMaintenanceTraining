@@ -2143,6 +2143,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f89106f0419ab4bae2cee3264ac56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &887132773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1828845616}
+    m_Modifications:
+    - target: {fileID: 9143769578930865853, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_Name
+      value: ThermalPaste
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3649
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.93230003
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.318
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abe01f6f3421bef47a749378d730ac5b, type: 3}
+--- !u!4 &887132774 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9143769578930865858, guid: abe01f6f3421bef47a749378d730ac5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 887132773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &887132775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9143769578930865853, guid: abe01f6f3421bef47a749378d730ac5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 887132773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &903224821 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3238610977944821017, guid: 744d06d6c29239e4e869e576f9554a27,
@@ -5437,6 +5518,7 @@ Transform:
   - {fileID: 453477006}
   - {fileID: 465865824}
   - {fileID: 2037333411}
+  - {fileID: 887132774}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6564,6 +6646,11 @@ PrefabInstance:
       propertyPath: _currentObject
       value: 
       objectReference: {fileID: 2037333412}
+    - target: {fileID: 1489159589049904616, guid: 3cbde22ee162dee479b606a82b90f69a,
+        type: 3}
+      propertyPath: _currentObject
+      value: 
+      objectReference: {fileID: 887132775}
     - target: {fileID: 5961552181924288483, guid: 3cbde22ee162dee479b606a82b90f69a,
         type: 3}
       propertyPath: _currentObject
