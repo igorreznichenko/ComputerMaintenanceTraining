@@ -20,10 +20,10 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		private DetachedObjectState _detachedObjectState;
 
-		private DetachedObjectState DetachedObjectState
+		public DetachedObjectState DetachedObjectState
 		{
 			get { return _detachedObjectState; }
-			set
+			private set
 			{
 				if (_detachedObjectState != value)
 				{
@@ -33,7 +33,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			}
 		}
 
-		private event Action<DetachedObjectState> OnDetachedObjectStateChanged = default;
+		public event Action<DetachedObjectState> OnDetachedObjectStateChanged = default;
 
 		#region placeholder logic
 
