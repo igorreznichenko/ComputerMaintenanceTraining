@@ -7,7 +7,7 @@ namespace ComputerMaintenanceTraining.Interaction
 	public class CPU : MonoBehaviour
 	{
 		[SerializeField]
-		private CPUThermalPasteFillAnimation _thermalPasteAppearingAnimation;
+		private CPUThermalPasteFillAnimation _cpuThermalPasteFillAnimation;
 
 		private bool _hasThermalPaste = false;
 
@@ -34,7 +34,7 @@ namespace ComputerMaintenanceTraining.Interaction
 		public void ApplyThermalPaste()
 		{
 			_hasThermalPaste = true;
-			_thermalPasteAppearingAnimation.Play();
+			_cpuThermalPasteFillAnimation.Play();
 		}
 	}
 }
