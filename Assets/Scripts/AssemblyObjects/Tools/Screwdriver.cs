@@ -139,8 +139,8 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 		private IEnumerator ScrewCoroutine(Screwable screwable)
 		{
 			float lastYRotation;
+			Quaternion lookRotation;
 
-			//Set model to bolt place
 			float offsetDistance = Vector3.Distance(_modelPivot.position, _screwHeader.position);
 
 			Vector3 targetMovePosition = screwable.ScrewToolPlace.position + screwable.ScrewToolPlace.up * offsetDistance;
@@ -158,9 +158,8 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 			yield return new WaitUntil(() => isOnPlace);
 
-			lastYRotation = screwable.Pivot.TransformWorldToLocalRotation(_modelPivot.rotation).eulerAngles.y;
-
-			//look at pivot in one plane
+			lookRotation = GetCurrentLookRotation();
+			lastYRotation = GetYRotationInScrewableLocalSpace(screwable, lookRotation);
 
 			bool stuckInPlace = false;
 
@@ -168,26 +167,16 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			{
 				yield return null;
 
-				if(!screwable.IsScrewable)
+				if (!screwable.IsScrewable)
 				{
 					break;
 				}
 
-				Vector3 pivotPosition = Pivot.position;
+				lookRotation = GetCurrentLookRotation();
 
-				pivotPosition = _modelPivot.InverseTransformPoint(pivotPosition);
+				float currentAngle = GetYRotationInScrewableLocalSpace(screwable, lookRotation);
 
-				pivotPosition.y = 0;
-
-				pivotPosition = _modelPivot.TransformPoint(pivotPosition);
-
-				Vector3 lookRotationDirection = pivotPosition - _modelPivot.position;
-
-				Quaternion lookRotation = Quaternion.LookRotation(lookRotationDirection, _modelPivot.up);
-
-				float currentAngle = screwable.PlacePivot.TransformWorldToLocalRotation(lookRotation).eulerAngles.y;
-
-				float difference =  CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
+				float difference = CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
 
 				lastYRotation = currentAngle;
 
@@ -215,6 +204,28 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 					_modelPivot.position = afterMovePosition;
 				}
 			}
+		}
+
+		private float GetYRotationInScrewableLocalSpace(Screwable screwable, Quaternion lookRotation)
+		{
+			return screwable.PlacePivot.TransformWorldToLocalRotation(lookRotation).eulerAngles.y;
+		}
+
+		private Quaternion GetCurrentLookRotation()
+		{
+			Vector3 pivotPosition = Pivot.position;
+
+			pivotPosition = _modelPivot.InverseTransformPoint(pivotPosition);
+
+			pivotPosition.y = 0;
+
+			pivotPosition = _modelPivot.TransformPoint(pivotPosition);
+
+			Vector3 lookRotationDirection = pivotPosition - _modelPivot.position;
+
+			Quaternion lookRotation = Quaternion.LookRotation(lookRotationDirection, _modelPivot.up);
+
+			return lookRotation;
 		}
 
 		private void ResetModelPivot()
