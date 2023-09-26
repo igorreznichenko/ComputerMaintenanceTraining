@@ -54,7 +54,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 		public virtual void Release()
 		{
-			Current = null;
+			if (Current != null)
+			{
+				Current.Pivot.parent = null;
+				Current = null;
+			}
 		}
 	}
 }
