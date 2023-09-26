@@ -24,12 +24,12 @@ namespace ComputerMaintenanceTraining.Interaction
 				if (_hasThermalPaste != value)
 				{
 					_hasThermalPaste = value;
-					OnHasThermalPasteStatechanged?.Invoke(value);
+					OnHasThermalPasteStateChanged?.Invoke(value);
 				}
 			}
 		}
 
-		public event Action<bool> OnHasThermalPasteStatechanged;
+		public event Action<bool> OnHasThermalPasteStateChanged;
 
 		public void ApplyThermalPaste()
 		{

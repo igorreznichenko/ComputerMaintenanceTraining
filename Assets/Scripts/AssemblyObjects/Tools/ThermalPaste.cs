@@ -63,12 +63,12 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private void OnSelectEventHandler(PointerEvent pointerEvent)
 		{
-			_canBePlacedToPlaceholder = false;
+			CanBePlacedToPlaceholder = false;
 		}
 
 		private void OnUnselectEventHandler(PointerEvent pointerEvent)
 		{
-			_canBePlacedToPlaceholder = true;
+			CanBePlacedToPlaceholder = true;
 		}
 
 		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
