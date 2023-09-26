@@ -9,6 +9,7 @@ namespace ComputerMaintenanceTraining.Enums
 		CPUCooler,
 		Screwdriver,
 		Screw,
-		ThermalPaste
+		ThermalPaste,
+		CPU
 	}
 }
