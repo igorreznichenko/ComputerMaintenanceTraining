@@ -33,7 +33,7 @@ namespace ComputerMaintenanceTraining.Interaction
 
 		public void ApplyThermalPaste()
 		{
-			_hasThermalPaste = true;
+			HasThermalPaste = true;
 			_cpuThermalPasteFillAnimation.Play();
 		}
 	}
