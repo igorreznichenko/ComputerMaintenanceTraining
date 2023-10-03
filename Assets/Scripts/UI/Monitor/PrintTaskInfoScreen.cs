@@ -47,11 +47,13 @@ namespace ComputerMaintenanceTraining.UI.Monitor
 		private void SubscribeEvents()
 		{
 			_tasksController.OnProgressChanged += OnProgressChangedEventHandler;
+			_tasksController.OnComplete += OnTasksCompleteEventHandler;
 		}
 
 		private void UnsubscribeEvents()
 		{
 			_tasksController.OnProgressChanged -= OnProgressChangedEventHandler;
+			_tasksController.OnComplete -= OnTasksCompleteEventHandler;
 		}
 
 		private void RefreshDescription()
@@ -71,6 +73,11 @@ namespace ComputerMaintenanceTraining.UI.Monitor
 		private void OnProgressChangedEventHandler(int taskIndex, int stepIndex)
 		{
 			PrintTaskAndStepDescriptionAtIndex(taskIndex, stepIndex);
+		}
+
+		private void OnTasksCompleteEventHandler()
+		{
+			_monitorUIController.SwitchScreen<FinishScreen>();
 		}
 
 		private void PrintTaskAndStepDescriptionAtIndex(int taskIndex, int stepIndex)
