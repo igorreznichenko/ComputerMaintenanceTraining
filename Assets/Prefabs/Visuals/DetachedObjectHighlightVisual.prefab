@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlightColor: {r: 0, g: 1, b: 0.06273794, a: 1}
+  _highlightController: {fileID: 0}
   _target: {fileID: 0}
