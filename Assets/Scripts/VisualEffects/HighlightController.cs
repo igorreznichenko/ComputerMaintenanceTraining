@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.VisualEffects
 {
-	public abstract class HighlightController
+	public abstract class HighlightController: MonoBehaviour
 	{
 		public abstract void StartHighlight(Color color);
 
