@@ -10,11 +10,17 @@ namespace ComputerMaintenanceTraining.TaskProgress
 
 		private int _currentStepIndex = 0;
 
+		public int StepIndex 
+		{ 
+			get { return _currentStepIndex; } 
+		}
+
 		public event Action OnTaskCompleted = default;
+		public event Action<int> OnStepChanged = default;
 
 		public void Activate()
 		{
-			ActivateCurrentask();
+			ActivateCurrentStep();
 		}
 
 		private void OnCurrentStepFinished()
@@ -30,14 +36,16 @@ namespace ComputerMaintenanceTraining.TaskProgress
 			}
 			else
 			{
-				ActivateCurrentask();
+				ActivateCurrentStep();
 			}
 		}
 
-		private void ActivateCurrentask()
+		private void ActivateCurrentStep()
 		{
 			_steps[_currentStepIndex].OnComplete += OnCurrentStepFinished;
 			_steps[_currentStepIndex].Activate();
+
+			OnStepChanged?.Invoke(_currentStepIndex);
 		}
 	}
 }

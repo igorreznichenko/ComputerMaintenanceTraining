@@ -1344,6 +1344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61689fe925994504d9e1f0775cf35466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &288042223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3362295278221670197, guid: 821ba49d20e345c498f5b46e436b9e00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069548215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &345100789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4048,6 +4054,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1413152950}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &990454847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1598619768332047104, guid: b68e25dc7a3de12468de8e6424730324,
+    type: 3}
+  m_PrefabInstance: {fileID: 5406380092240099069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0cbc4529129664b8e42dce41a07e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &995642238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7588,7 +7606,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1069548215}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 288042223}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e30f43845e753e43874bb74eccaf83f, type: 3}
@@ -9581,6 +9599,11 @@ PrefabInstance:
       propertyPath: _tasksController
       value: 
       objectReference: {fileID: 1794398768}
+    - target: {fileID: 2366364217190806579, guid: 1f634f1aee9c3574cb22e571c74969ad,
+        type: 3}
+      propertyPath: _monitorUIController
+      value: 
+      objectReference: {fileID: 990454847}
     - target: {fileID: 2366364217190806732, guid: 1f634f1aee9c3574cb22e571c74969ad,
         type: 3}
       propertyPath: m_RootOrder
@@ -9650,6 +9673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1828845616}
     m_Modifications:
+    - target: {fileID: 2243846024087510719, guid: b68e25dc7a3de12468de8e6424730324,
+        type: 3}
+      propertyPath: _tasksControllerObject
+      value: 
+      objectReference: {fileID: 288042223}
     - target: {fileID: 3540654997353491906, guid: b68e25dc7a3de12468de8e6424730324,
         type: 3}
       propertyPath: m_Camera

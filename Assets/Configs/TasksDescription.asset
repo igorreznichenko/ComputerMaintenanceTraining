@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8e3551e8e676944a69c285abbd3cdd, type: 3}
+  m_Name: TasksDescription
+  m_EditorClassIdentifier: 
+  _taskInfo:
+  - _taskDescription: Detach side-cover
+    _stepDescriptions:
+    - Detach side-cover holders and place them on table
+    - Detach side-cover and place It on the table
+  - _taskDescription: Replace BIOS battery
+    _stepDescriptions:
+    - Open battery keeper
+    - Detach and place old batery on table
+    - Take the new battery and put it in place
+    - Push new battery in place
+  - _taskDescription: Replace RAM
+    _stepDescriptions:
+    - Open RAM keeper
+    - Detach and place old RAM on the table
+    - Take the new RM and put it in place
+    - Push new RAM in place
+  - _taskDescription: Detach CPU cooler
+    _stepDescriptions:
+    - Screw out up-right screw
+    - Place up-right bolt on the table
+    - Screw out bottom-right screw
+    - Place bottom-right bolt on the table
+    - Screw out up-left screw
+    - Place up-left bolt on the table
+    - Screw out bottom-left screw
+    - Place bottom-left bolt on the table
+    - Detach CPU Cooler and place it on the table
+  - _taskDescription: Fill CPU with thermal paste
+    _stepDescriptions:
+    - Take the thermal paste and fill the CPU with It
+    - Place thermal paste on the table
+  - _taskDescription: Attach and tight CPU Cooler
+    _stepDescriptions:
+    - Take the CPU cooler and attach it to the place
+    - Attach up-right screw
+    - Screw in up-right screw
+    - Attach bottom-right screw
+    - Screw in bottom-right screw
+    - Attach up-left screw
+    - Screw in up-left screw
+    - Attach bottom-left screw
+    - Screw in bottom-left screw
+  - _taskDescription: Attach side-cover
+    _stepDescriptions:
+    - Attach side-cover
+    - Attach side-cover holder
