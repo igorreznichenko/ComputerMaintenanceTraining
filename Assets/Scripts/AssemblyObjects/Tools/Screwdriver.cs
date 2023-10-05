@@ -176,7 +176,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 				float currentAngle = GetYRotationInScrewableLocalSpace(screwable, lookRotation);
 
-				float difference = CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
+				float difference = -CircleDegreeUtil.GetMinDegreeDifference(lastYRotation, currentAngle);
 
 				lastYRotation = currentAngle;
 
