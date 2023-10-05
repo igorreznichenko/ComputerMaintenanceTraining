@@ -16,7 +16,7 @@ namespace ComputerMaintenanceTraining.TaskProgress
 
 		public event Action OnComplete = default;
 
-		public void Activate()
+		public virtual void Activate()
 		{
 			SubscribeEvents();
 			OnActivateStep?.Invoke();
@@ -25,7 +25,7 @@ namespace ComputerMaintenanceTraining.TaskProgress
 
 		}
 
-		public void Deactivate()
+		public virtual void Deactivate()
 		{
 			UnsubscribeEvents();
 			OnDeactivateStep?.Invoke();
