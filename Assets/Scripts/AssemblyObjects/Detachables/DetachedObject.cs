@@ -16,7 +16,9 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		[SerializeField]
 		private PointableUnityEventWrapper _pointableUnityEventWrapper;
 
-		private List<DetachedObjectPlace> _candidates = new List<DetachedObjectPlace>();
+		private HashSet<DetachedObjectPlace> _candidates = new HashSet<DetachedObjectPlace>();
+
+		private DetachedObjectPlace _bestCandidate = null;
 
 		private DetachedObjectState _detachedObjectState;
 
@@ -72,6 +74,8 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (_current != null)
 			{
+				_candidates.Add(_current);
+				_bestCandidate = _current;
 				SetToDetachedPlace(_current);
 			}
 		}
@@ -92,15 +96,10 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (other.TryGetComponent(out DetachedObjectPlace place))
 			{
-				if(_current != null)
-				{
-					return;
-				}
-
-				if (place.TargetObject == AssemblyObjectType && place.CanAttachObject)
+				if (place.TargetObject == AssemblyObjectType)
 				{
 					_candidates.Add(place);
-					DetachedObjectState = DetachedObjectState.Hover;
+					ProcessState();
 				}
 			}
 		}
@@ -109,14 +108,92 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			if (other.TryGetComponent(out DetachedObjectPlace place))
 			{
-				if (place.TargetObject == AssemblyObjectType && place.CanAttachObject)
+				if (place.TargetObject == AssemblyObjectType)
 				{
 					_candidates.Remove(place);
+					ProcessState();
+				}
+			}
+		}
 
-					if (_candidates.Count == 0)
-					{
-						DetachedObjectState = DetachedObjectState.Detached;
-					}
+		private void Update()
+		{
+			ProcessState();
+		}
+
+		private void ProcessState()
+		{
+			ProcessBestCandidate();
+
+			switch ((DetachedObjectState)
+)
+			{
+				case DetachedObjectState.Detached:
+					ProcessDetachedState();
+					break;
+				case DetachedObjectState.Hover:
+					ProcessHoverState();
+					break;
+				case DetachedObjectState.Attached:
+					ProcessAttachState();
+					break;
+			}
+		}
+
+		private void ProcessDetachedState()
+		{
+			if (_current != null)
+			{
+				DetachedObjectState = DetachedObjectState.Attached;
+			}
+			else if (_bestCandidate != null)
+			{
+				DetachedObjectState = DetachedObjectState.Hover;
+			}
+		}
+
+		private void ProcessHoverState()
+		{
+			if (_bestCandidate == null)
+			{
+				DetachedObjectState = DetachedObjectState.Detached;
+			}
+			else if (_current != null)
+			{
+				DetachedObjectState = DetachedObjectState.Attached;
+			}
+		}
+
+		private void ProcessAttachState()
+		{
+			if (_current == null)
+			{
+				if (_bestCandidate != null)
+				{
+					DetachedObjectState = DetachedObjectState.Hover;
+				}
+				else
+				{
+					DetachedObjectState = DetachedObjectState.Detached;
+				}
+			}
+		}
+
+		private void ProcessBestCandidate()
+		{
+			if (_current != null)
+			{
+				_bestCandidate = _current;
+			}
+			else
+			{
+				if (_candidates.Count > 0)
+				{
+					_bestCandidate = _candidates.FirstOrDefault(x => x.CanAttachObject);
+				}
+				else
+				{
+					_bestCandidate = null;
 				}
 			}
 		}
@@ -126,13 +203,11 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 			if (DetachedObjectState == DetachedObjectState.Hover)
 			{
-				DetachedObjectPlace firstCandidate = _candidates.First();
-				SetToDetachedPlace(firstCandidate);
+				SetToDetachedPlace(_bestCandidate);
 				return;
 			}
 
 			CanBePlacedToPlaceholder = true;
-
 		}
 
 		private void OnSelectEventHandler(PointerEvent pointerEvent)
@@ -141,7 +216,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 
 			if (DetachedObjectState == DetachedObjectState.Attached)
 			{
-				DetachedObjectState = DetachedObjectState.Hover;
 				ReleaseCurrentPlace();
 			}
 		}
@@ -155,13 +229,14 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		{
 			_current = detachedObjectPlace;
 			_current.SetDetachedObject(this);
-			DetachedObjectState = DetachedObjectState.Attached;
+			ProcessState();
 		}
 
 		protected virtual void ReleaseCurrentPlace()
 		{
 			_current.Release();
 			_current = null;
+			ProcessState();
 		}
 	}
 }
