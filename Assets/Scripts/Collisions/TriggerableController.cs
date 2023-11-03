@@ -7,21 +7,23 @@ namespace ComputerMaintenanceTraining.Collisions
 		[SerializeField]
 		private GameObject _targetTriggerable;
 
-		private ITriggerable _trigerrable;
+		private ITriggerEnterHandler _triggerEnterHandler = null;
+		private ITriggerExitHandler _triggerExitHandler = null;
 
 		private void Awake()
 		{
-			_trigerrable = _targetTriggerable.GetComponent<ITriggerable>();
+			_triggerEnterHandler = _targetTriggerable.GetComponent<ITriggerEnterHandler>();
+			_triggerExitHandler = _targetTriggerable.GetComponent<ITriggerExitHandler>();
 		}
 
 		private void OnTriggerEnter(Collider other)
 		{
-			_trigerrable.TriggerEnter(other);
+			_triggerEnterHandler?.TriggerEnter(other);
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			_trigerrable.TriggerExit(other);
+			_triggerExitHandler?.TriggerExit(other);
 		}
 	}
 }

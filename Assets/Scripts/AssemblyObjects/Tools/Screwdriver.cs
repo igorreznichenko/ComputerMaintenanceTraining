@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class Screwdriver : AssemblyObject, ITriggerable
+	public class Screwdriver : AssemblyObject, ITriggerEnterHandler
 	{
 		[SerializeField]
 		private Transform _modelPivot;
@@ -77,8 +77,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 				StartScrewing(screwable);
 			}
 		}
-
-		public void TriggerExit(Collider other) { }
 
 		private void StartScrewing(Screwable screwable)
 		{

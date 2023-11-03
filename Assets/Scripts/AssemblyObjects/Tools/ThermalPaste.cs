@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class ThermalPaste : AssemblyObject, ITriggerable
+	public class ThermalPaste : AssemblyObject, ITriggerEnterHandler
 	{
 		[SerializeField]
 		private PointableUnityEventWrapper _pointableUnityEventWrapper;
@@ -42,7 +42,5 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 			_syringeHandle.position = _syringeHandlePushIn.position;
 			cpu.ApplyThermalPaste();
 		}
-
-		public void TriggerExit(Collider other) { }
 	}
 }

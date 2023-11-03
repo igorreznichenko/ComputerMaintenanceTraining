@@ -2,10 +2,8 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.Collisions
 {
-	public interface ITriggerable
+	public interface ITriggerExitHandler
 	{
-		public void TriggerEnter(Collider other);
-
 		public void TriggerExit(Collider other);
 	}
 }
