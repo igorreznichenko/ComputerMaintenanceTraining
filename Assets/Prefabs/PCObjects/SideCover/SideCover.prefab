@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 7132322928081739618}
   - component: {fileID: 7132322928081739619}
   - component: {fileID: 7132322928081739616}
+  - component: {fileID: 7629305481380424025}
   m_Layer: 0
   m_Name: SideCover
   m_TagString: Untagged
@@ -329,6 +330,20 @@ MonoBehaviour:
   _whenCancel:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7629305481380424025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132322928081739622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 7132322928081739618}
+  _pointableUnityEventWrapper: {fileID: 7132322928081739616}
 --- !u!1 &7132322928099758325
 GameObject:
   m_ObjectHideFlags: 0

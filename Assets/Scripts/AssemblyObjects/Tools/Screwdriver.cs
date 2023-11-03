@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class Screwdriver : AssemblyObject, IPlaceholderObject, ITriggerable
+	public class Screwdriver : AssemblyObject, ITriggerable
 	{
 		[SerializeField]
 		private Transform _modelPivot;
@@ -39,27 +39,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private float _moveToPlaceTime = 0.5f;
 
-		#region placeholder
-
-		private bool _canBePlacedToPlaceholder = false;
-
-		public bool CanBePlacedToPlaceholder
-		{
-			get { return _canBePlacedToPlaceholder; }
-			set
-			{
-				if (_canBePlacedToPlaceholder != value)
-				{
-					_canBePlacedToPlaceholder = value;
-					OnPlacableStateChanged?.Invoke(this);
-				}
-			}
-		}
-
-		public event Action<IPlaceholderObject> OnPlacableStateChanged;
-		public event Action<PlaceholderPlace> OnPlaceholderPlaceChanged;
-
-		#endregion
 
 		private void OnEnable()
 		{
@@ -73,31 +52,17 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		private void SubscribeEvents()
 		{
-			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
 			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnUnselectEventHandler);
 		}
 
 		private void UnsubscribeEvents()
 		{
-			_pointableUnityEventWrapper.WhenSelect.RemoveListener(OnSelectEventHandler);
 			_pointableUnityEventWrapper.WhenUnselect.RemoveListener(OnUnselectEventHandler);
-		}
-
-		private void OnSelectEventHandler(PointerEvent pointerEvent)
-		{
-			CanBePlacedToPlaceholder = false;
 		}
 
 		private void OnUnselectEventHandler(PointerEvent pointerEvent)
 		{
 			StopScrewing();
-
-			CanBePlacedToPlaceholder = true;
-		}
-
-		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
-		{
-			OnPlaceholderPlaceChanged?.Invoke(placeholderPlace);
 		}
 
 		public void TriggerEnter(Collider other)

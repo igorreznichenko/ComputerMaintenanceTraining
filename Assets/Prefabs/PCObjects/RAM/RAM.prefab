@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 2487202818020319737}
   - component: {fileID: 2487202818020319742}
   - component: {fileID: 2487202818020319743}
+  - component: {fileID: 1709958078272789136}
   m_Layer: 0
   m_Name: RAM
   m_TagString: Untagged
@@ -206,6 +207,20 @@ MonoBehaviour:
   _whenCancel:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1709958078272789136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487202818020319740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 2487202818020319742}
+  _pointableUnityEventWrapper: {fileID: 2487202818020319743}
 --- !u!1 &2487202818588095824
 GameObject:
   m_ObjectHideFlags: 0

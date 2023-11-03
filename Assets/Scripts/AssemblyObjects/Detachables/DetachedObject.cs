@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 {
-	public class DetachedObject : AssemblyObject, IPlaceholderObject
+	public class DetachedObject : AssemblyObject
 	{
 		[SerializeField]
 		private DetachedObjectPlace _current = null;
@@ -36,29 +36,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 		}
 
 		public event Action<DetachedObjectState> OnDetachedObjectStateChanged = default;
-
-		#region placeholder logic
-
-		private bool _canBePlacedToPlaceholder = false;
-
-
-		public bool CanBePlacedToPlaceholder
-		{
-			get { return _canBePlacedToPlaceholder; }
-			set
-			{
-				if (_canBePlacedToPlaceholder != value)
-				{
-					_canBePlacedToPlaceholder = value;
-					OnPlacableStateChanged?.Invoke(this);
-				}
-			}
-		}
-
-		public event Action<IPlaceholderObject> OnPlacableStateChanged;
-		public event Action<PlaceholderPlace> OnPlaceholderPlaceChanged;
-
-		#endregion
 
 		private void OnEnable()
 		{
@@ -206,23 +183,14 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 				SetToDetachedPlace(_bestCandidate);
 				return;
 			}
-
-			CanBePlacedToPlaceholder = true;
 		}
 
 		private void OnSelectEventHandler(PointerEvent pointerEvent)
 		{
-			CanBePlacedToPlaceholder = false;
-
 			if (DetachedObjectState == DetachedObjectState.Attached)
 			{
 				ReleaseCurrentPlace();
 			}
-		}
-
-		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
-		{
-			OnPlaceholderPlaceChanged?.Invoke(placeholderPlace);
 		}
 
 		protected virtual void SetToDetachedPlace(DetachedObjectPlace detachedObjectPlace)

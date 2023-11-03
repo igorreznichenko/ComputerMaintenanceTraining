@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects
 {
-	public class ThermalPaste : AssemblyObject, IPlaceholderObject, ITriggerable
+	public class ThermalPaste : AssemblyObject, ITriggerable
 	{
 		[SerializeField]
 		private PointableUnityEventWrapper _pointableUnityEventWrapper;
@@ -18,58 +18,10 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 		[SerializeField]
 		private Transform _syringeHandlePushIn;
 
-		private bool _canBePlacedToPlaceholder = false;
-
-		public bool CanBePlacedToPlaceholder
-		{
-			get { return _canBePlacedToPlaceholder; }
-
-			private set
-			{
-				if (_canBePlacedToPlaceholder != value)
-				{
-					_canBePlacedToPlaceholder = value;
-					OnPlacableStateChanged?.Invoke(this);
-				}
-			}
-		}
-
 		private bool _hasThermalPaste = true;
 
 		public event Action<IPlaceholderObject> OnPlacableStateChanged;
 		public event Action<PlaceholderPlace> OnPlaceholderPlaceChanged;
-
-		private void OnEnable()
-		{
-			SubscribeEvents();
-		}
-
-		private void OnDisable()
-		{
-			UnsubscribeEvents();
-		}
-
-		private void SubscribeEvents()
-		{
-			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
-			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnUnselectEventHandler);
-		}
-
-		private void UnsubscribeEvents()
-		{
-			_pointableUnityEventWrapper.WhenSelect.AddListener(OnSelectEventHandler);
-			_pointableUnityEventWrapper.WhenUnselect.AddListener(OnUnselectEventHandler);
-		}
-
-		private void OnSelectEventHandler(PointerEvent pointerEvent)
-		{
-			CanBePlacedToPlaceholder = false;
-		}
-
-		private void OnUnselectEventHandler(PointerEvent pointerEvent)
-		{
-			CanBePlacedToPlaceholder = true;
-		}
 
 		public void OnPlaceholderPlaceChangedEventHandler(PlaceholderPlace placeholderPlace)
 		{
@@ -78,7 +30,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 
 		public void TriggerEnter(Collider other)
 		{
-			if(other.TryGetComponent(out CPU cpu) && !cpu.HasThermalPaste && _hasThermalPaste)
+			if (other.TryGetComponent(out CPU cpu) && !cpu.HasThermalPaste && _hasThermalPaste)
 			{
 				UseThermalPaste(cpu);
 			}

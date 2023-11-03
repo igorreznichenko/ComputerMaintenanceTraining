@@ -23,8 +23,8 @@ namespace ComputerMaintenanceTraining.PlaceholderLogic
 		{
 			get { return _target.Pivot; }
 		}
-
 		private bool _canBePlacedToPlaceholder = false;
+
 
 		public bool CanBePlacedToPlaceholder
 		{

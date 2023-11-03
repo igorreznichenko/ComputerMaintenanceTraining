@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 9143769578930865855}
   - component: {fileID: 9143769578930865854}
   - component: {fileID: 9143769578930865859}
+  - component: {fileID: 6851009332116895841}
   m_Layer: 0
   m_Name: ThermalPaste
   m_TagString: Untagged
@@ -626,6 +627,20 @@ MonoBehaviour:
   _pointableUnityEventWrapper: {fileID: 9143769578930865854}
   _syringeHandle: {fileID: 7226415601745095120}
   _syringeHandlePushIn: {fileID: 9143769578469785802}
+--- !u!114 &6851009332116895841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143769578930865853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 9143769578930865859}
+  _pointableUnityEventWrapper: {fileID: 9143769578930865854}
 --- !u!1001 &7734403099393949154
 PrefabInstance:
   m_ObjectHideFlags: 0

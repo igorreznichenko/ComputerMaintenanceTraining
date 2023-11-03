@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2307283219538918312}
   - component: {fileID: 2307283219538918311}
   - component: {fileID: 2307283219538918310}
+  - component: {fileID: 1765484811837092739}
   m_Layer: 0
   m_Name: Screwdriver
   m_TagString: Untagged
@@ -136,6 +137,20 @@ MonoBehaviour:
   _pivot: {fileID: 2307283219538918314}
   _modelPivot: {fileID: 2307283220647378650}
   _screwHeader: {fileID: 2307283220486526409}
+  _pointableUnityEventWrapper: {fileID: 2307283219538918311}
+--- !u!114 &1765484811837092739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307283219538918309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 2307283219538918310}
   _pointableUnityEventWrapper: {fileID: 2307283219538918311}
 --- !u!1 &2307283220486526408
 GameObject:
