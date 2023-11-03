@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 8515062721565206918}
   - component: {fileID: 8515062721565206917}
   - component: {fileID: 8515062721565206915}
-  - component: {fileID: 2221014123459527309}
+  - component: {fileID: 4131117515192779678}
   m_Layer: 0
   m_Name: Screw
   m_TagString: Untagged
@@ -416,7 +416,7 @@ MonoBehaviour:
   _pointableUnityEventWrapper: {fileID: 8515062721565206918}
   _screwable: {fileID: 8515062721565206917}
   _screwInOnStartAttach: 1
---- !u!114 &2221014123459527309
+--- !u!114 &4131117515192779678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -425,11 +425,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8515062721565206923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c22b3168e028ac4cb425c1528f58e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 8515062721565206915}
   _pointableUnityEventWrapper: {fileID: 8515062721565206918}
+  _target: {fileID: 8515062721565206915}
 --- !u!1 &8515062721576889575
 GameObject:
   m_ObjectHideFlags: 0

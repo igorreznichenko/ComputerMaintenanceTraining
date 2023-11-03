@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4925084400809721294}
   - component: {fileID: 4925084400809721295}
   - component: {fileID: 4925084400809721280}
-  - component: {fileID: 4203175180868064557}
   - component: {fileID: 4925084400809721281}
   - component: {fileID: 4925084400809721282}
+  - component: {fileID: 2797252795520071130}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Untagged
@@ -86,20 +86,6 @@ MonoBehaviour:
   _pivot: {fileID: 4925084400809721293}
   _current: {fileID: 0}
   _pointableUnityEventWrapper: {fileID: 4925084400809721282}
---- !u!114 &4203175180868064557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4925084400809721283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e34510089a99f4bb236ed51bcc7d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 4925084400809721280}
-  _pointableUnityEventWrapper: {fileID: 4925084400809721282}
 --- !u!114 &4925084400809721281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +139,20 @@ MonoBehaviour:
   _whenCancel:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2797252795520071130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925084400809721283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c22b3168e028ac4cb425c1528f58e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointableUnityEventWrapper: {fileID: 4925084400809721282}
+  _target: {fileID: 4925084400809721280}
 --- !u!1 &4925084400870616673
 GameObject:
   m_ObjectHideFlags: 0
