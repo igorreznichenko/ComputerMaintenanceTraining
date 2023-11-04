@@ -115,8 +115,13 @@ PrefabInstance:
     - target: {fileID: 443959496397381058, guid: c48c14f4f9b9ae04c9c28b351e9f4b42,
         type: 3}
       propertyPath: m_Name
-      value: ScrewIn
+      value: ScrewIn Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 443959496669536559, guid: c48c14f4f9b9ae04c9c28b351e9f4b42,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: c4dcdfb572d72914b8cd1797179299b8, type: 2}
     - target: {fileID: 8066678137990116818, guid: c48c14f4f9b9ae04c9c28b351e9f4b42,
         type: 3}
       propertyPath: m_AnchoredPosition.x
