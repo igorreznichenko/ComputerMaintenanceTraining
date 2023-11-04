@@ -12,6 +12,9 @@ namespace ComputerMaintenanceTraining.UI.VFX
 		[SerializeField]
 		private Graphic _graphic;
 
+		[SerializeField]
+		private Ease _ease;
+
 		private Sequence _fadeSequence = null;
 
 		private void OnEnable()
@@ -38,8 +41,8 @@ namespace ComputerMaintenanceTraining.UI.VFX
 
 			float semiTime = _fadeTime / 2;
 
-			_fadeSequence.Append(_graphic.DOFade(1, semiTime));
-			_fadeSequence.Append(_graphic.DOFade(0, semiTime));
+			_fadeSequence.Append(_graphic.DOFade(1, semiTime).SetEase(_ease));
+			_fadeSequence.Append(_graphic.DOFade(0, semiTime).SetEase(_ease));
 			_fadeSequence.SetLoops(-1);
 		}
 
