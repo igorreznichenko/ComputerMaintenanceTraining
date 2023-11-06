@@ -21,9 +21,14 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			set { _allowAttach = value; }
 		}
 
+		public bool ContainsObject
+		{
+			get { return Current != null; }
+		}
+
 		public bool CanAttachObject
 		{
-			get { return Current == null && _allowAttach; }
+			get { return !ContainsObject && _allowAttach; }
 		}
 
 		public AssemblyObjectType TargetObject
