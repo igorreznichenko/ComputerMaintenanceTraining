@@ -11,14 +11,14 @@ namespace ComputerMaintenanceTraining.TaskProgress.ConditionReaction
 		{
 			base.Activate();
 
-			_conditionReactionController.Deactivate();
+			_conditionReactionController.Activate();
 		}
 
 		public override void Deactivate()
 		{
 			base.Deactivate();
 
-			_conditionReactionController.Activate();
+			_conditionReactionController.Deactivate();
 		}
 	}
 }
