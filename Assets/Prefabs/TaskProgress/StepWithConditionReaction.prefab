@@ -52,7 +52,7 @@ MonoBehaviour:
   OnDeactivateStep:
     m_PersistentCalls:
       m_Calls: []
-  _conditionReactionController: {fileID: 0}
+  _conditionReactionController: {fileID: 6603554892275974973}
 --- !u!1001 &4115280923739494867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,3 +128,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4115280923739494867}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6603554892275974973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7113682029585636078, guid: bf3dafb953586e044b319e2ceb323669,
+    type: 3}
+  m_PrefabInstance: {fileID: 4115280923739494867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec49e0f786730cc45923e706af571aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
