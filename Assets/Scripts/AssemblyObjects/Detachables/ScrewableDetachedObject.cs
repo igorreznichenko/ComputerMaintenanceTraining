@@ -15,9 +15,9 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			get { return _screwInOnStartAttach; }
 		}
 
-		protected override void Start()
+		public override void Initialize()
 		{
-			base.Start();
+			base.Initialize();
 			_screwInOnStartAttach = false;
 		}
 

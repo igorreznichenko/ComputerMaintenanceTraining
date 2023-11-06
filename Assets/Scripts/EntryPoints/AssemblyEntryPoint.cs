@@ -1,3 +1,4 @@
+using ComputerMaintenanceTraining.Initialization;
 using ComputerMaintenanceTraining.TaskProgress;
 using ComputerMaintenanceTraining.UI;
 using ComputerMaintenanceTraining.UI.Monitor;
@@ -17,9 +18,12 @@ namespace ComputerMaintenanceTraining.EntryPoints
 		[SerializeField]
 		private MonitorUIController _monitorUIController;
 
+		[SerializeField]
+		private Initializer _initializer;
+
 		private void Awake()
 		{
-			_monitorUIController.Initialize();
+			_initializer.Initialize();
 
 			_fader.FadeOut(() =>
 			{

@@ -1,5 +1,5 @@
 using ComputerMaintenanceTraining.Enums;
-using ComputerMaintenanceTraining.PlaceholderLogic;
+using ComputerMaintenanceTraining.Initialization;
 using Oculus.Interaction;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 {
-	public class DetachedObject : AssemblyObject
+	public class DetachedObject : AssemblyObject, IInitializable
 	{
 		[SerializeField]
 		private DetachedObjectPlace _current = null;
@@ -47,7 +47,7 @@ namespace ComputerMaintenanceTraining.AssemblyObjects.Detachables
 			UnsubscribeEvents();
 		}
 
-		protected virtual void Start()
+		public virtual void Initialize()
 		{
 			if (_current != null)
 			{

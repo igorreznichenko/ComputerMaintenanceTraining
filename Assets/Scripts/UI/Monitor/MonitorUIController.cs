@@ -1,9 +1,10 @@
+using ComputerMaintenanceTraining.Initialization;
 using System.Linq;
 using UnityEngine;
 
 namespace ComputerMaintenanceTraining.UI
 {
-	public class MonitorUIController : MonoBehaviour
+	public class MonitorUIController : MonoBehaviour, IInitializable
 	{
 		[SerializeField]
 		private MonitorScreen[] _monitorScreens;

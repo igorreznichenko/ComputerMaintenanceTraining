@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace ComputerMaintenanceTraining.Initialization
@@ -28,5 +29,17 @@ namespace ComputerMaintenanceTraining.Initialization
 
 			return initializables;
 		}
+
+#if UNITY_EDITOR
+		[ContextMenu("Fill Initializables")]
+		private void Fillinitializables()
+		{
+			GameObject[] initializables = FindObjectsOfType<GameObject>(true)
+				.Where(x => x.GetComponent<IInitializable>() != null)
+				.ToArray();
+
+			_initializableObjects = initializables;
+		}
+#endif
 	}
 }
