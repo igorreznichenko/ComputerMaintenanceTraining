@@ -45,9 +45,9 @@ namespace ComputerMaintenanceTraining.UI.Monitor
 		{
 			int currentTimeToRestart = _secondsToRestart;
 
-			yield return _finishText.PrintTextCoroutine(_text, _printTextSpeed);
+			yield return _finishText.PrintTextBySymbolsCoroutine(_text, _printTextSpeed);
 
-			yield return _restartInfo.PrintTextCoroutine(string.Format(_restartTextTemplate, currentTimeToRestart), _printTextSpeed);
+			yield return _restartInfo.PrintTextBySymbolsCoroutine(string.Format(_restartTextTemplate, currentTimeToRestart), _printTextSpeed);
 
 			while (currentTimeToRestart > 0)
 			{

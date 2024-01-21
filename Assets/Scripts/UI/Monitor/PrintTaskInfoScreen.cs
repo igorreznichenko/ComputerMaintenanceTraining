@@ -94,12 +94,12 @@ namespace ComputerMaintenanceTraining.UI.Monitor
 		{
 			if (_outTaskText.text != taskDescription)
 			{
-				yield return _outTaskText.PrintTextCoroutine(taskDescription, _printSymbolTime);
+				yield return _outTaskText.PrintTextBySymbolsCoroutine(taskDescription, _printSymbolTime);
 			}
 
 			if (_outDescriptionText.text != stepDesciption)
 			{
-				yield return _outDescriptionText.PrintTextCoroutine(stepDesciption, _printSymbolTime);
+				yield return _outDescriptionText.PrintTextBySymbolsCoroutine(stepDesciption, _printSymbolTime);
 			}
 		}
 	}
