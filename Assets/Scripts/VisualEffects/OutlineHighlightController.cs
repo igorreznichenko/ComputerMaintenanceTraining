@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ComputerMaintenanceTraining.VisualEffects
 {
-    public class OutlineHighlightController : HighlightController
-    {
+	public class OutlineHighlightController : HighlightController
+	{
 		[SerializeField]
 		private Outline _outline;
 
@@ -19,5 +17,5 @@ namespace ComputerMaintenanceTraining.VisualEffects
 		{
 			_outline.enabled = false;
 		}
-    }
+	}
 }

@@ -1,10 +1,8 @@
 using ComputerMaintenanceTraining.Collisions;
 using ComputerMaintenanceTraining.Extensions;
-using ComputerMaintenanceTraining.PlaceholderLogic;
 using ComputerMaintenanceTraining.Utils;
 using DG.Tweening;
 using Oculus.Interaction;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -154,7 +152,6 @@ namespace ComputerMaintenanceTraining.AssemblyObjects
 					stuckInPlace = false;
 
 					currentAngle = lastYRotation;
-
 				}
 				else
 				{

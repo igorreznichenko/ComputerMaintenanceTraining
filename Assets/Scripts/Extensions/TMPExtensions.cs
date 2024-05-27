@@ -6,7 +6,7 @@ namespace ComputerMaintenanceTraining.Extensions
 {
 	public static class TMPExtensions
 	{
-		public static IEnumerator PrintTextCoroutine(this TMP_Text outText, string text, float printSymbolTime)
+		public static IEnumerator PrintTextBySymbolsCoroutine(this TMP_Text outText, string text, float printSymbolTime)
 		{
 			outText.text = string.Empty;
 
